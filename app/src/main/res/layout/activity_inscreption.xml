@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/img_2"
+    tools:context=".MainActivity"
+
+    >
+
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/img_1"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        app:civ_border_width="12dp"
+        app:civ_border_color="#D6C02D2D"
+
+        >
+
+    </de.hdodenhof.circleimageview.CircleImageView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:orientation="vertical"
+        >
+
+        <EditText
+            android:id="@+id/Nom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:drawableLeft="@android:drawable/ic_menu_myplaces"
+            android:drawableTint="#BC2B2E"
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@android:drawable/sym_action_email"
+            android:drawableTint="#BD2B2E"
+            android:ems="10"
+            android:hint="Email *"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@android:drawable/ic_lock_idle_lock"
+            android:drawableTint="#BE2B2E"
+            android:ems="10"
+            android:hint="Password *"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            />
+
+        <EditText
+            android:id="@+id/Confirmpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@android:drawable/ic_lock_idle_lock"
+            android:drawableTint="#BE2B2E"
+            android:ems="10"
+            android:hint="Confirm Password"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            />
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="40dp"
+        android:text="register"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:background="#65ADAF"
+        android:alpha="0.9"
+        />
+
+
+
+
+</LinearLayout>
