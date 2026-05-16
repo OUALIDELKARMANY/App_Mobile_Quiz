@@ -5,11 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.projet_controle_1"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.projet_controle_1"
@@ -51,7 +47,6 @@ dependencies {
 
     implementation("com.google.firebase:firebase-firestore:24.11.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
-    // pour afficher les images via URL
-
-
+    // Cloudinary
+    implementation("com.cloudinary:cloudinary-android:3.1.2")
 }
