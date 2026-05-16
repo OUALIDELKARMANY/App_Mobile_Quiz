@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Mon_style">
         <activity
+            android:name=".activity_profile"
+            android:exported="false" />
+        <activity
             android:name=".Score"
             android:exported="false" />
         <activity

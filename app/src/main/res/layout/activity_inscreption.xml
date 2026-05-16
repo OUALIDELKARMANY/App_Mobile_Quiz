@@ -14,8 +14,9 @@
 
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:id="@+id/imgProfile"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:src="@drawable/img_1"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
@@ -31,6 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="29dp"
         android:orientation="vertical"
+        android:layout_margin="10dp"
         >
 
         <EditText
@@ -38,6 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+            android:textColor="@color/black"
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
@@ -55,6 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/black"
             android:drawableLeft="@android:drawable/sym_action_email"
             android:drawableTint="#BD2B2E"
             android:ems="10"
@@ -74,6 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginTop="10dp"
+            android:textColor="@color/black"
             android:drawableLeft="@android:drawable/ic_lock_idle_lock"
             android:drawableTint="#BE2B2E"
             android:ems="10"
@@ -92,6 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginTop="10dp"
+            android:textColor="@color/black"
             android:drawableLeft="@android:drawable/ic_lock_idle_lock"
             android:drawableTint="#BE2B2E"
             android:ems="10"
@@ -104,6 +110,14 @@
             android:layout_marginLeft="20dp"
             />
 
+        <Button
+            android:id="@+id/btnSelectImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choisir une photo"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
+
 
     </LinearLayout>
 
@@ -111,7 +125,9 @@
         android:id="@+id/button3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="40dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginLeft="60dp"
         android:text="register"
         android:textStyle="bold"
         android:textSize="20dp"

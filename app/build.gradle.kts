@@ -49,4 +49,9 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth")
 
+    implementation("com.google.firebase:firebase-firestore:24.11.0")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    // pour afficher les images via URL
+
+
 }
