@@ -18,7 +18,7 @@ public class Score extends AppCompatActivity {
 
     TextView score_aff;
     ProgressBar bar;
-    Button btn_Try, btn_LogOut;
+    Button btn_Try, btn_LogOut, btnProfile;
 
     int score;
 
@@ -37,6 +37,15 @@ public class Score extends AppCompatActivity {
         score_aff = findViewById(R.id.Valeur_score);
         btn_Try = findViewById(R.id.button8);
         btn_LogOut = findViewById(R.id.button9);
+
+        btnProfile = findViewById(R.id.btnProfile);
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Score.this, activity_profile.class);
+                startActivity(i);
+            }
+        });
 
         Intent i1 = getIntent();
         score = i1.getIntExtra("score", 0);

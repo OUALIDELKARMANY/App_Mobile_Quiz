@@ -20,7 +20,7 @@ public class Qst_4 extends AppCompatActivity {
 
     RadioButton rb;
 
-    Button btn;
+    Button btn, btnProfile;
 
     String reponse = "11";
 
@@ -40,6 +40,15 @@ public class Qst_4 extends AppCompatActivity {
 
         rg = findViewById(R.id.radioGrp);
         btn = findViewById(R.id.button2);
+
+        btnProfile = findViewById(R.id.btnProfile);
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Qst_4.this, activity_profile.class);
+                startActivity(i);
+            }
+        });
 
         Intent i1 = getIntent();
         score = i1.getIntExtra("score", 0);

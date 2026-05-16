@@ -95,7 +95,7 @@
         <Button
             android:id="@+id/button2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:text="next"
@@ -103,14 +103,21 @@
             android:textStyle="bold"
             android:textSize="20dp"
             android:background="#65ADAF"
+            android:layout_marginBottom="15dp"
             android:alpha="0.9"/>
 
-        <ImageView
-            android:id="@+id/imageView4"
+        <Button
+            android:id="@+id/btnProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars"
-            android:layout_margin="20dp"/>
+            android:layout_marginRight="140dp"
+            android:layout_marginLeft="140dp"
+            android:text="Profile"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:background="#65ADAF"
+            android:alpha="0.9"/>
 
 
     </LinearLayout>

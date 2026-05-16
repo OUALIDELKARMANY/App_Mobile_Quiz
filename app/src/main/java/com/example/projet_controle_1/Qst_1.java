@@ -20,7 +20,9 @@ public class Qst_1 extends AppCompatActivity {
 
     RadioButton rb;
 
-    Button btn;
+
+
+    Button btn, btnProfile;
 
     String reponse = "France";
 
@@ -40,7 +42,20 @@ public class Qst_1 extends AppCompatActivity {
 
 
 
+
+
+
         rg = findViewById(R.id.radioGrp);
+        btnProfile = findViewById(R.id.btnProfile);
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Qst_1.this, activity_profile.class);
+                startActivity(i);
+            }
+        });
+
+
         btn = findViewById(R.id.button2);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +84,14 @@ public class Qst_1 extends AppCompatActivity {
 
 
             }
+
+
+
         });
+
+
+
+
 
 
 
