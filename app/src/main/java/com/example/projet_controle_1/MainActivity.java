@@ -96,7 +96,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(task.isSuccessful()){
 
-                    startActivity(new Intent(getApplicationContext(), Qst_1.class));
+//                    startActivity(new Intent(getApplicationContext(), Qst_1.class));
+                    startActivity(new Intent(getApplicationContext(), activity_profile.class));
                     finish();
 
                 }else {
