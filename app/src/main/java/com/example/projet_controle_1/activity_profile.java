@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -26,6 +27,7 @@ public class activity_profile extends AppCompatActivity {
 
     CircleImageView imgProfile;
     EditText etName, etEmail;
+    TextView tvScore;
     Button btnChangeImage, btnSave, btnCommencer;
 
     FirebaseFirestore db;
@@ -42,6 +44,7 @@ public class activity_profile extends AppCompatActivity {
         imgProfile = findViewById(R.id.imgProfile);
         etName = findViewById(R.id.etName);
         etEmail = findViewById(R.id.etEmail);
+        tvScore = findViewById(R.id.tvScore);
         btnChangeImage = findViewById(R.id.btnChangeImage);
         btnSave = findViewById(R.id.btnSave);
         btnCommencer = findViewById(R.id.btnCommencer);
@@ -68,6 +71,12 @@ public class activity_profile extends AppCompatActivity {
                     if (value != null && value.exists()) {
                         etName.setText(value.getString("name"));
                         etEmail.setText(value.getString("email"));
+
+                        // Récupérer et afficher le score
+                        Long score = value.getLong("score");
+                        if (score != null) {
+                            tvScore.setText("Mon Score : " + score + " / 5");
+                        }
 
                         // Utiliser 'imageUrl' (URL Cloudinary) au lieu de 'imageUri' (local)
                         String imgUrl = value.getString("imageUrl");
@@ -96,7 +105,6 @@ public class activity_profile extends AppCompatActivity {
         btnSave.setOnClickListener(v -> {
             Map<String, Object> update = new HashMap<>();
             update.put("name", etName.getText().toString());
-            // On ne change pas l'email car il est lié au compte Auth
 
             db.collection("users").document(uid)
                     .update(update)
@@ -112,8 +120,6 @@ public class activity_profile extends AppCompatActivity {
         if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
             imageUri = data.getData();
             imgProfile.setImageURI(imageUri);
-            // Note: Si vous voulez que le bouton SAVE envoie l'image vers Cloudinary, 
-            // il faudrait ajouter la logique d'upload ici aussi.
         }
     }
 }
