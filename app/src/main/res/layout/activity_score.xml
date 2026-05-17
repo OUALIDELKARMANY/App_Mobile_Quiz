@@ -88,7 +88,7 @@
     <Button
         android:id="@+id/btnProfile"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginRight="140dp"
         android:layout_marginLeft="140dp"
         android:text="Profile"
@@ -97,5 +97,16 @@
         android:textSize="20dp"
         android:background="#65ADAF"
         android:alpha="0.9"/>
+    <!-- Dans activity_score.xml, ajoutez ce bouton à la fin -->
+    <Button
+        android:id="@+id/buttonClassement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="60dp"
+        android:layout_marginTop="10dp"
+        android:text="Voir le Classement (API)"
+        android:background="#FF9800"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 
 </LinearLayout>

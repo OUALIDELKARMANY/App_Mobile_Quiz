@@ -28,7 +28,7 @@ public class activity_profile extends AppCompatActivity {
     CircleImageView imgProfile;
     EditText etName, etEmail;
     TextView tvScore;
-    Button btnChangeImage, btnSave, btnCommencer;
+    Button btnChangeImage, btnSave, btnCommencer, btnClassement;
 
     FirebaseFirestore db;
     FirebaseAuth auth;
@@ -48,6 +48,8 @@ public class activity_profile extends AppCompatActivity {
         btnChangeImage = findViewById(R.id.btnChangeImage);
         btnSave = findViewById(R.id.btnSave);
         btnCommencer = findViewById(R.id.btnCommencer);
+        btnClassement = findViewById(R.id.btnClassement);
+
 
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
@@ -101,6 +103,13 @@ public class activity_profile extends AppCompatActivity {
             Intent i = new Intent(activity_profile.this, Qst_1.class);
             startActivity(i);
         });
+
+
+        btnClassement.setOnClickListener(v -> {
+            Intent i = new Intent(activity_profile.this, Classement.class);
+            startActivity(i);
+        });
+
 
         btnSave.setOnClickListener(v -> {
             Map<String, Object> update = new HashMap<>();

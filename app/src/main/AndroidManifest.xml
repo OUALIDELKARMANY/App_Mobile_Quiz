@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
     <application
@@ -14,7 +16,11 @@
         android:label="Quiz Game"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Mon_style">
+        android:theme="@style/Mon_style"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".Classement"
+            android:exported="false" />
         <activity
             android:name=".activity_profile"
             android:exported="false" />

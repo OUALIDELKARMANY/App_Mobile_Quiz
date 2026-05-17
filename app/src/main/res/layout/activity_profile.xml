@@ -58,6 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Changer image"
+        android:textStyle="bold"
         android:layout_marginBottom="10dp"
         android:backgroundTint="#65ADAF"/>
 
@@ -67,15 +68,25 @@
         android:layout_height="wrap_content"
         android:text="Enregistrer les modifications"
         android:layout_marginBottom="10dp"
+        android:textStyle="bold"
         android:backgroundTint="#65ADAF"/>
 
 
     <Button
         android:id="@+id/btnCommencer"
+        android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Commencer le jeu"
         android:backgroundTint="#65ADAF"/>
 
+
+    <Button
+        android:id="@+id/btnClassement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Classement"
+        android:textStyle="bold"
+        android:backgroundTint="#65ADAF"/>
 
 </LinearLayout>
