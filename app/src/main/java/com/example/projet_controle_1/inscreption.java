@@ -1,8 +1,12 @@
 package com.example.projet_controle_1;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +15,11 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -19,13 +27,16 @@ import androidx.core.view.WindowInsetsCompat;
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -40,6 +51,11 @@ public class inscreption extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseFirestore db;
     Uri selectedImageUri;
+    String currentPhotoPath;
+
+    private static final int REQUEST_IMAGE_PICK = 100;
+    private static final int REQUEST_IMAGE_CAPTURE = 101;
+    private static final int PERMISSION_CAMERA_REQUEST = 102;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,15 +65,7 @@ public class inscreption extends AppCompatActivity {
         FirebaseApp.initializeApp(getApplicationContext());
 
         // Initialisation Cloudinary
-        Map<String, String> config = new HashMap<>();
-        config.put("cloud_name", "due6gruub");
-        config.put("api_key", "373274545413971");
-        config.put("api_secret", "OXEXSh5O9-eMGjfLPPeEW_YGnd8");
-        try {
-            MediaManager.init(this, config);
-        } catch (IllegalStateException e) {
-            // Déjà initialisé
-        }
+        initCloudinary();
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -102,11 +110,101 @@ public class inscreption extends AppCompatActivity {
             }
         });
 
-        btnSelectImage.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_PICK);
-            intent.setType("image/*");
-            startActivityForResult(intent, 100);
+        btnSelectImage.setOnClickListener(v -> showImageSourceDialog());
+    }
+
+    private void initCloudinary() {
+        Map<String, String> config = new HashMap<>();
+        config.put("cloud_name", "due6gruub");
+        config.put("api_key", "373274545413971");
+        config.put("api_secret", "OXEXSh5O9-eMGjfLPPeEW_YGnd8");
+        try {
+            MediaManager.init(this, config);
+        } catch (IllegalStateException e) {
+            // Déjà initialisé
+        }
+    }
+
+    private void showImageSourceDialog() {
+        String[] options = {"Caméra", "Galerie"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choisir une photo");
+        builder.setItems(options, (dialog, which) -> {
+            if (which == 0) {
+                checkCameraPermission();
+            } else {
+                openGallery();
+            }
         });
+        builder.show();
+    }
+
+    private void checkCameraPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, PERMISSION_CAMERA_REQUEST);
+        } else {
+            openCamera();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSION_CAMERA_REQUEST) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                openCamera();
+            } else {
+                Toast.makeText(this, "Permission caméra refusée", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void openGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, REQUEST_IMAGE_PICK);
+    }
+
+    private void openCamera() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                Toast.makeText(this, "Erreur lors de la création du fichier", Toast.LENGTH_SHORT).show();
+            }
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(this,
+                        "com.example.projet_controle_1.fileprovider",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            }
+        }
+    }
+
+    private File createImageFile() throws IOException {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(imageFileName, ".jpg", storageDir);
+        currentPhotoPath = image.getAbsolutePath();
+        return image;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == REQUEST_IMAGE_PICK && data != null) {
+                selectedImageUri = data.getData();
+                imgProfile.setImageURI(selectedImageUri);
+            } else if (requestCode == REQUEST_IMAGE_CAPTURE) {
+                File f = new File(currentPhotoPath);
+                selectedImageUri = Uri.fromFile(f);
+                imgProfile.setImageURI(selectedImageUri);
+            }
+        }
     }
 
     private void uploadImageAndSignUp(String email, String password) {
@@ -168,14 +266,5 @@ public class inscreption extends AppCompatActivity {
                         Toast.makeText(inscreption.this, "Erreur d'inscription: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
-            selectedImageUri = data.getData();
-            imgProfile.setImageURI(selectedImageUri);
-        }
     }
 }

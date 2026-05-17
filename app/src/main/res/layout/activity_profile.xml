@@ -89,4 +89,13 @@
         android:textStyle="bold"
         android:backgroundTint="#65ADAF"/>
 
+
+    <Button
+        android:id="@+id/btnGPS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ma Position"
+        android:textStyle="bold"
+        android:backgroundTint="#65ADAF"/>
+
 </LinearLayout>
