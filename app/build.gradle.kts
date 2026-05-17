@@ -33,7 +33,6 @@ android {
 }
 
 dependencies {
-    //
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -53,4 +52,7 @@ dependencies {
 
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // Location API
+    implementation("com.google.android.gms:play-services-location:21.3.0")
 }

@@ -51,7 +51,19 @@
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:padding="12dp"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="10dp"/>
+
+    <!-- TextView ajouté pour la position -->
+    <TextView
+        android:id="@+id/tvLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Position : Non définie"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:layout_marginBottom="10dp"
+        android:textStyle="italic"/>
 
     <Button
         android:id="@+id/btnChangeImage"
@@ -59,7 +71,7 @@
         android:layout_height="wrap_content"
         android:text="Changer image"
         android:textStyle="bold"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:backgroundTint="#65ADAF"/>
 
     <Button
@@ -67,7 +79,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enregistrer les modifications"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:textStyle="bold"
         android:backgroundTint="#65ADAF"/>
 
@@ -78,6 +90,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Commencer le jeu"
+        android:layout_marginBottom="5dp"
         android:backgroundTint="#65ADAF"/>
 
 
@@ -86,6 +99,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Classement"
+        android:layout_marginBottom="5dp"
         android:textStyle="bold"
         android:backgroundTint="#65ADAF"/>
 
